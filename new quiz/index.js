@@ -29,6 +29,14 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+function getIdFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get('uid');
+  return id;
+}
+
+const id = getIdFromUrl();
+console.log(id);
 // ✅ Utility function to show messages
 function showMessage(message, divId) {
   var messageDiv = document.getElementById(divId);
