@@ -65,7 +65,7 @@ signUp.addEventListener("click", (event) => {
         .then(() => {
          
 window.location.href = `https://lilalin808.github.io/new-quiz/newQuiz/homepage.html?uid=${id}`;
-";
+
         })
         .catch((error) => {
           console.error("error writing document", error);
