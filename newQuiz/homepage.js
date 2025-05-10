@@ -43,8 +43,12 @@ const questions = [];
 let currentQuestionIndex = 0;
 let answerChecked = false;
 
+
+
 window.addEventListener("DOMContentLoaded", function () {
-  const uid = "23e1a038b6cf4f148c77fa125459f854";
+   const urlParams = new URLSearchParams(window.location.search);
+  const uid = urlParams.get('uid');  // Get the 'uid' parameter from the URL
+
   const iframe = document.getElementById("api-frame");
 
   const client = new Sketchfab("1.12.1", iframe);
