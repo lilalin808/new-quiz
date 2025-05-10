@@ -63,7 +63,9 @@ signUp.addEventListener("click", (event) => {
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-          window.location.href = "newQuiz/homepage.html";
+         
+window.location.href = `https://lilalin808.github.io/new-quiz/newQuiz/homepage.html?uid=${id}`;
+";
         })
         .catch((error) => {
           console.error("error writing document", error);
@@ -91,7 +93,7 @@ signIn.addEventListener("click", (event) => {
       showMessage("login is successful", "signInMessage");
       const user = userCredential.user;
       localStorage.setItem("loggedInUserId", user.uid);
-      window.location.href = "newQuiz/homepage.html";
+window.location.href = `https://lilalin808.github.io/new-quiz/newQuiz/homepage.html?uid=${id}`;
     })
     .catch((error) => {
       const errorCode = error.code;
