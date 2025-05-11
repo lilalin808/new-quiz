@@ -15,35 +15,41 @@
     />
   </head>
   <body>
-<div class="page-container">
-    <div id="content">
-    <iframe
-      id="api-frame"
-      width="800"
-      height="500"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; xr-spatial-tracking"
-      allowfullscreen
-    ></iframe>
+    <div class="page-container">
+      <div id="content">
+        <iframe
+          id="api-frame"
+          width="800"
+          height="500"
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; xr-spatial-tracking"
+          allowfullscreen
+        ></iframe>
 
-    <div id="quiz-container" style="display: none">
-      <h2 id="question"></h2>
-      <div id="options"></div>
-      <p id="result"></p>
-      <button id="next-button" disabled>Check Answer</button>
-      <button id="restart" style="display: none">Take Quiz Again</button>
+        <div id="quiz-container" style="display: none">
+          <h2 id="question"></h2>
+          <div id="options"></div>
+          <p id="result"></p>
+          <button id="next-button" disabled>Check Answer</button>
+          <button id="restart" style="display: none">Take Quiz Again</button>
+        </div>
+      </div>
+      <div class="footer">
+        <a href="https://ohns.ucsf.edu/sinus/virtual-reality-anatomic-lab">
+          <strong>Return to Home</strong>
+        </a>
+      </div>
     </div>
-  </div>
-   <div class="footer">
-      <a href="https://ohns.ucsf.edu/sinus/virtual-reality-anatomic-lab">
-        <strong>Return to Home</strong>
-      </a>
+    <div class="container">
+      <form
+        method="POST"
+        target="_blank"
+        action="https://script.google.com/macros/s/AKfycbwLetCncysoHbZcR-148F3TfkrreENy4vzXkWy1ydXLHd9h5df68wayNDBVm9cvNqb9/exec"
+        name="contact-form"
+        onsubmit="console.log('Submitting...');"
+        id="form"
+      ></form>
     </div>
-    </div>
-<form id="form" action="https://script.google.com/macros/s/AKfycbxV2hvcLn1XYktI1IRrtywLPhjOflVJbXehnCUrlwdtlmvo9cPGPO6HFI47elVRV0uh/exec" method="post">
-  <input id="uid" name="Uid" value="john">
-  <input id="score" name="Score" value="8">
-</form>
     <script type="module" src="homepage.js"></script>
   </body>
 </html>
