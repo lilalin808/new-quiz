@@ -181,7 +181,7 @@ function showScore() {
 }
 async function submitScore() {
   const url =
-    "https://script.google.com/macros/s/AKfycbwaTkF0XX_ntXmRS7-yjXf4o-0eq5kzSyYAR4JUtmZPyyNttrzl3F1Dk1uU5IzXGKOm/exec"; // 🔁 Replace this with your actual Apps Script URL
+    "https://script.google.com/macros/s/AKfycbxV2hvcLn1XYktI1IRrtywLPhjOflVJbXehnCUrlwdtlmvo9cPGPO6HFI47elVRV0uh/exec"; // 🔁 Replace this with your actual Apps Script URL
 
   try {
     const response = await fetch(url, {
