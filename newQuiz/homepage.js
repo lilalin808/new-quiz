@@ -180,25 +180,19 @@ function showScore() {
   `;
 }
 async function submitScore() {
-  const url =
-    "https://script.google.com/macros/s/AKfycbxV2hvcLn1XYktI1IRrtywLPhjOflVJbXehnCUrlwdtlmvo9cPGPO6HFI47elVRV0uh/exec"; // 🔁 Replace this with your actual Apps Script URL
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        uid: currentUserId || "anonymous",
-        score: score,
-      }),
-    });
+     const data = { name: "John Doe", email: "john.doe@example.com", message: "Hello" };
+ fetch("https://script.google.com/macros/s/AKfycbxV2hvcLn1XYktI1IRrtywLPhjOflVJbXehnCUrlwdtlmvo9cPGPO6HFI47elVRV0uh/exec", { // Replace with your web app URL
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+  "Content-Type": "application/json",
+  },
+  body: JSON.stringify(data),
+ })
+  .then((response) => console.log("Success:", response))
+  .catch((error) => console.error("Error:", error));
 
-    const result = await response.text();
-    alert(`Score submitted: ${score}/${questions.length}\nResponse: ${result}`);
-  } catch (error) {
-    console.error("Error submitting score to Google Sheets:", error);
-  }
+  
 }
 
