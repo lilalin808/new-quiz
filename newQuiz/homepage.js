@@ -43,11 +43,9 @@ const questions = [];
 let currentQuestionIndex = 0;
 let answerChecked = false;
 
-
-
 window.addEventListener("DOMContentLoaded", function () {
-   const urlParams = new URLSearchParams(window.location.search);
-  const uid = urlParams.get('uid');  // Get the 'uid' parameter from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const uid = urlParams.get("uid"); // Get the 'uid' parameter from the URL
 
   const iframe = document.getElementById("api-frame");
 
@@ -165,12 +163,14 @@ document.getElementById("next-button").addEventListener("click", () => {
       displayQuestion();
     } else {
       showScore();
-      submitScore();
     }
   }
 });
 
 function showScore() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const uid = urlParams.get("uid"); // Get the 'uid' parameter from the URL
+
   const container = document.getElementById("quiz-container");
   container.innerHTML = `
     <h2>Quiz Completed!</h2>
@@ -178,20 +178,27 @@ function showScore() {
     <button onclick="location.reload()">Take Quiz Again</button>
     
   `;
-}
-async function submitScore() {
+  const form = document.getElementById("form");
+  form.innerHTML = `  <input type="hidden" name="modelId" value="${uid}" />
+        <input type="hidden" name="user" value="${currentUserId}" />
+        <input type="hidden" name="score" value="${score}/${questions.length}" />
+        `;
 
-     const data = { name: "John Doe", email: "john.doe@example.com", message: "Hello" };
- fetch("https://script.google.com/macros/s/AKfycbxV2hvcLn1XYktI1IRrtywLPhjOflVJbXehnCUrlwdtlmvo9cPGPO6HFI47elVRV0uh/exec", { // Replace with your web app URL
-  method: "POST",
-  headers: {
-  "Content-Type": "application/json",
-  },
-  body: JSON.stringify(data),
- })
-  .then((response) => console.log("Success:", response))
-  .catch((error) => console.error("Error:", error));
-
-  
+  // ✅ Programmatically trigger the form submission
+  form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
 }
 
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch(this.action, {
+    method: "POST",
+    body: formData, // ✅ Drop manual encoding
+  })
+    .then(() => {
+      this.reset();
+    })
+    .catch(() => {});
+});
