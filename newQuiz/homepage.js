@@ -184,7 +184,6 @@ async function submitScore() {
      const data = { name: "John Doe", email: "john.doe@example.com", message: "Hello" };
  fetch("https://script.google.com/macros/s/AKfycbxV2hvcLn1XYktI1IRrtywLPhjOflVJbXehnCUrlwdtlmvo9cPGPO6HFI47elVRV0uh/exec", { // Replace with your web app URL
   method: "POST",
-  mode: "no-cors",
   headers: {
   "Content-Type": "application/json",
   },
