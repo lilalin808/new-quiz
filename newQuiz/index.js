@@ -23,6 +23,8 @@ const firebaseConfig = {
 
 // ✅ Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 function getIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,6 +34,20 @@ function getIdFromUrl() {
 
 const id = getIdFromUrl();
 console.log(id);
+
+let currentUserId = null;
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    currentUserId = user.uid;
+    console.log("User signed in:", currentUserId);
+    window.location.href = `https://lilalin808.github.io/new-quiz/newQuiz/homepage.html?uid=${id}`;
+
+  } else {
+    console.warn("No user signed in");
+  }
+});
+
 // ✅ Utility function to show messages
 function showMessage(message, divId) {
   var messageDiv = document.getElementById(divId);
