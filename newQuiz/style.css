@@ -4,7 +4,7 @@ body {
   padding: 0;
   background-color: #f8f9fa;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 html,
@@ -13,9 +13,25 @@ body {
   margin: 0;
 }
 
-#content {
-  flex-direction:row;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer {
+  text-align: center;
+  margin: 20px;
+}
+
+
 #api-frame {
   margin: 20px;
   border-radius: 10px;
