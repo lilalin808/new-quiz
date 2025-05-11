@@ -179,17 +179,26 @@ function showScore() {
     
   `;
 }
-
 async function submitScore() {
+  const url =
+    "https://script.google.com/macros/s/AKfycbwaTkF0XX_ntXmRS7-yjXf4o-0eq5kzSyYAR4JUtmZPyyNttrzl3F1Dk1uU5IzXGKOm/exec"; // 🔁 Replace this with your actual Apps Script URL
+
   try {
-    const userRef = doc(db, "users", currentUserId);
-    const scoresRef = collection(userRef, "scores");
-    await addDoc(scoresRef, {
-      score: score,
-      timestamp: serverTimestamp(),
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        uid: currentUserId || "anonymous",
+        score: score,
+      }),
     });
-    alert(`Score submitted: ${score}/${questions.length}`);
+
+    const result = await response.text();
+    alert(`Score submitted: ${score}/${questions.length}\nResponse: ${result}`);
   } catch (error) {
-    console.error("Error submitting score:", error);
+    console.error("Error submitting score to Google Sheets:", error);
   }
 }
+
