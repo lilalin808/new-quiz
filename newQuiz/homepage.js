@@ -170,7 +170,7 @@ document.getElementById("next-button").addEventListener("click", () => {
 function showScore() {
   const urlParams = new URLSearchParams(window.location.search);
   const uid = urlParams.get("uid"); // Get the 'uid' parameter from the URL
-
+console.log("uid");
   const container = document.getElementById("quiz-container");
   container.innerHTML = `
     <h2>Quiz Completed!</h2>
