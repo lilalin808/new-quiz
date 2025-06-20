@@ -64,7 +64,7 @@ const questionResults = []; // { index: 0, status: 'correct' | 'incorrect' | 'un
 window.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const quizType = urlParams.get("uid"); // fallback default
-
+console.log(quizType);
   const iframe = document.getElementById("api-frame");
 
   const client = new Sketchfab("1.12.1", iframe);
