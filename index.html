@@ -90,6 +90,12 @@
       const signInForm = document.getElementById("signIn");
       const signUpForm = document.getElementById("signup");
 
+      const button = document.getElementById("submitSignUp");
+
+      button.addEventListener("click", function () {
+        window.location.href = "homepage.html";
+      });
+      
       signUpButton.addEventListener("click", function () {
         signInForm.style.display = "none";
         signUpForm.style.display = "block";
