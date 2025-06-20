@@ -3,6 +3,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import {
   getFirestore,
@@ -27,6 +29,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+
+setPersistence(auth, browserLocalPersistence); // Stays logged in across sessions
 
 function getIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
