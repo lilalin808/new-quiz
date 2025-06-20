@@ -64,7 +64,6 @@ const questions = [];
 let answerChecked = false;
 const questionResults = []; // { index: 0, status: 'correct' | 'incorrect' | 'unanswered' }
 
-setPersistence(auth, browserLocalPersistence); // Stays logged in across sessions
 
 window.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
