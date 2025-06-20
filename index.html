@@ -9,9 +9,7 @@
     <script type="module" src="index.js"></script>
   </head>
   <body>
-    <body>
-     
-    </body>
+    <body></body>
 
     <div class="container" id="signup" style="display: none">
       <h1 class="form-title">Sign Up</h1>
@@ -90,12 +88,6 @@
       const signInForm = document.getElementById("signIn");
       const signUpForm = document.getElementById("signup");
 
-      const button = document.getElementById("submitSignUp");
-
-      button.addEventListener("click", function () {
-        window.location.href = "homepage.html";
-      });
-      
       signUpButton.addEventListener("click", function () {
         signInForm.style.display = "none";
         signUpForm.style.display = "block";
