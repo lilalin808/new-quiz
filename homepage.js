@@ -13,10 +13,10 @@ import {
   getAuth,
   onAuthStateChanged,
   signOut,
+  setPersistence,
+  browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-import { arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-import { setPersistence, browserLocalPersistence } from "firebase/auth";
 
 
 async function loadCurrentAttempt(userId, quizType) {
