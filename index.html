@@ -4,28 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register & Login</title>
-    <link rel="stylesheet" href="newQuiz/index.css" />
+    <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" />
-    <script type="module" src="newQuiz/index.js"></script>
+    <script type="module" src="index.js"></script>
   </head>
   <body>
+    <body>
+     
+    </body>
+
     <div class="container" id="signup" style="display: none">
-      <h1 class="form-title">Register</h1>
+      <h1 class="form-title">Sign Up</h1>
+      <p>Sign up to save and view progress</p>
+      <p id="required">* indicates a required field</p>
       <form method="post" action="">
         <div id="signUpMessage" class="messageDiv" style="display: none"></div>
 
         <div class="input-group">
           <i class="fas fa-envelope"></i>
-          <input type="email" id="rEmail" placeholder="email" required />
+          <input type="email" id="rEmail" placeholder="* Email" />
         </div>
         <div class="input-group">
           <i class="fas fa-lock"></i>
           <input
             type="password"
             id="rPassword"
-            placeholder="password"
+            placeholder="* Password"
             required
           />
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="education" placeholder="Education" />
+        </div>
+        <div class="input-group">
+          <input type="text" id="level" placeholder="Level of training" />
+        </div>
+        <div class="input-group">
+          <input type="email" id="country" placeholder="Country of residence" />
         </div>
         <button class="btn" id="submitSignUp">Sign Up</button>
       </form>
@@ -39,12 +55,13 @@
 
     <div class="container" id="signIn">
       <h1 class="form-title">Sign In</h1>
+      <p>Sign in to save and view progress</p>
       <form method="post" action="">
         <div id="signInMessage" class="messageDiv" style="display: none"></div>
 
         <div class="input-group">
           <i class="fas fa-envelope"></i>
-          <input type="email" id="email" placeholder="email" required />
+          <input type="text" id="email" placeholder="Email" required />
         </div>
 
         <div class="input-group">
@@ -52,13 +69,11 @@
           <input
             type="password"
             id="password"
-            placeholder="password"
+            placeholder="Password"
             required
           />
         </div>
-        <p class="recover">
-          <a href="#">Recover Password</a>
-        </p>
+
         <button class="btn" id="submitSignIn">Sign In</button>
       </form>
       <p class="or">--------or--------</p>
