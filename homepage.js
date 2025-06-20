@@ -230,6 +230,8 @@ function handleAnswer(question, index) {
   };
 
   // ✅ Save progress
+    const urlParams = new URLSearchParams(window.location.search);
+
   const quizType = urlParams.get("uid");
   if (currentUserId) {
     saveCurrentAttempt(currentUserId, quizType, score);
