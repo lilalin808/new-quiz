@@ -49,8 +49,10 @@ function showMessage(message, divId) {
 
 // ✅ Wrap in DOMContentLoaded
 const signUp = document.getElementById("submitSignUp");
+
 signUp.addEventListener("click", (event) => {
   event.preventDefault();
+
   const email = document.getElementById("rEmail").value;
   const password = document.getElementById("rPassword").value;
   const education = document.getElementById("education").value;
@@ -60,8 +62,8 @@ signUp.addEventListener("click", (event) => {
   const auth = getAuth();
   const db = getFirestore();
 
-  createUserWithEmailAndPassword(auth, email, password).then(
-    async (userCredential) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
       const user = userCredential.user;
 
       await setDoc(doc(db, "users", user.uid), {
@@ -70,8 +72,14 @@ signUp.addEventListener("click", (event) => {
         levelOfTraining: level,
         country: country,
       });
-    }
-  );
+
+      // ✅ Redirect to homepage after successful signup and login
+      window.location.href = "homepage.html"; // replace with your actual homepage
+    })
+    .catch((error) => {
+      console.error("Signup error:", error);
+      alert(error.message); // optional user feedback
+    });
 });
 
 const signIn = document.getElementById("submitSignIn");
