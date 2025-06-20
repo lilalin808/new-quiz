@@ -63,7 +63,7 @@ const questionResults = []; // { index: 0, status: 'correct' | 'incorrect' | 'un
 
 window.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const quizType = urlParams.get("uid") || "4b69c9a621f34d3b9167fbacc40f5e5b"; // fallback default
+  const quizType = urlParams.get("uid"); // fallback default
 
   const iframe = document.getElementById("api-frame");
 
@@ -230,7 +230,7 @@ function handleAnswer(question, index) {
   };
 
   // ✅ Save progress
-  const quizType = "4b69c9a621f34d3b9167fbacc40f5e5b"; // or get from URL
+  const quizType = urlParams.get("uid");
   if (currentUserId) {
     saveCurrentAttempt(currentUserId, quizType, score);
   }
@@ -380,7 +380,7 @@ function showScore() {
   container.appendChild(resultBlock);
   // Firestore/form submission
   const urlParams = new URLSearchParams(window.location.search);
-  const quizType = urlParams.get("uid") || "4b69c9a621f34d3b9167fbacc40f5e5b";
+  const quizType = urlParams.get("uid");
 
   finalizeCurrentAttempt(currentUserId, quizType);
 
