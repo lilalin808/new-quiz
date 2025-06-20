@@ -16,6 +16,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 import { arrayUnion } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
+import { setPersistence, browserLocalPersistence } from "firebase/auth";
+
+
 async function loadCurrentAttempt(userId, quizType) {
   const attemptRef = doc(
     db,
@@ -60,6 +63,8 @@ let score = 0;
 const questions = [];
 let answerChecked = false;
 const questionResults = []; // { index: 0, status: 'correct' | 'incorrect' | 'unanswered' }
+
+setPersistence(auth, browserLocalPersistence); // Stays logged in across sessions
 
 window.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
