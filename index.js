@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   setPersistence,
   browserLocalPersistence,
-  auth,
+  
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import {
   getFirestore,
@@ -30,6 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+  const auth = getAuth();
 
 setPersistence(auth, browserLocalPersistence); // Stays logged in across sessions
 
@@ -63,9 +64,6 @@ signUp.addEventListener("click", (event) => {
   const education = document.getElementById("education").value;
   const level = document.getElementById("level").value;
   const country = document.getElementById("country").value;
-
-  const auth = getAuth();
-  const db = getFirestore();
 
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
