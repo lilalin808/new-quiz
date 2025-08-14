@@ -77,7 +77,7 @@ window.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((data) => {
-      quizName = data.name;
+      quizName = data.name.replaceAll("/", "-");;
     })
     .catch((error) => {
       console.error("Error fetching model:", error);
