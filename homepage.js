@@ -63,12 +63,31 @@ let score = 0;
 const questions = [];
 let answerChecked = false;
 const questionResults = []; // { index: 0, status: 'correct' | 'incorrect' | 'unanswered' }
+let quizName;
 
 
 window.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   const quizType = urlParams.get("uid"); // fallback default
-console.log(quizType);
+
+  const url = `https://api.sketchfab.com/v3/models/${quizType}`;
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      quizName = data.name;
+    })
+    .catch((error) => {
+      console.error("Error fetching model:", error);
+    });
+  
+console.log(quizName);
+  
   const iframe = document.getElementById("api-frame");
 
   const client = new Sketchfab("1.12.1", iframe);
@@ -89,7 +108,7 @@ console.log(quizType);
               const shouldReset = urlParams.get("reset") === "1";
 
               if (currentUserId && !shouldReset) {
-                attemptData = await loadCurrentAttempt(currentUserId, quizType);
+                attemptData = await loadCurrentAttempt(currentUserId, quizName);
 
                 if (attemptData?.questionOrder) {
                   reorderQuestions(attemptData.questionOrder); // restore saved order
@@ -234,11 +253,8 @@ function handleAnswer(question, index) {
   };
 
   // ✅ Save progress
-    const urlParams = new URLSearchParams(window.location.search);
-
-  const quizType = urlParams.get("uid");
   if (currentUserId) {
-    saveCurrentAttempt(currentUserId, quizType, score);
+    saveCurrentAttempt(currentUserId, quizName, score);
   }
 }
 
@@ -254,14 +270,14 @@ function fillUnanswered() {
   }
 }
 
-async function saveCurrentAttempt(userId, quizType, score) {
+async function saveCurrentAttempt(userId, quizName, score) {
   fillUnanswered();
   const currentAttemptRef = doc(
     db,
     "users",
     userId,
     "currentAttempts",
-    `${quizType}_current`
+    `${quizName}_current`
   );
 
   const questionOrder = questions.map((q) => q.correctAnswerIndex); // or another identifier
@@ -279,13 +295,13 @@ async function saveCurrentAttempt(userId, quizType, score) {
   );
 }
 
-async function finalizeCurrentAttempt(userId, quizType) {
+async function finalizeCurrentAttempt(userId, quizName) {
   const currentRef = doc(
     db,
     "users",
     userId,
     "currentAttempts",
-    `${quizType}_current`
+    `${quizName}_current`
   );
 
   const snapshot = await getDoc(currentRef);
@@ -299,7 +315,7 @@ async function finalizeCurrentAttempt(userId, quizType) {
       "users",
       userId,
       "pastAttempts",
-      quizType,
+      quizName,
       "attempts"
     );
     const correct = questionResults.filter(
@@ -335,7 +351,7 @@ async function finalizeCurrentAttempt(userId, quizType) {
       );
     }
 
-    await ensureQuizTypeField(userId, quizType);
+    await ensureQuizTypeField(userId, quizName);
   }
 }
 
