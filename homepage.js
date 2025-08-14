@@ -17,8 +17,6 @@ import {
   browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-
-
 async function loadCurrentAttempt(userId, quizType) {
   const attemptRef = doc(
     db,
@@ -65,10 +63,9 @@ let answerChecked = false;
 const questionResults = []; // { index: 0, status: 'correct' | 'incorrect' | 'unanswered' }
 let quizName;
 
-
 window.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const quizType = urlParams.get("uid"); // fallback default
+  const quizType = urlParams.get("uid") || "2976f868447f433bbec2a3a53c71ab99"; // fallback default
 
   const url = `https://api.sketchfab.com/v3/models/${quizType}`;
 
@@ -85,9 +82,9 @@ window.addEventListener("DOMContentLoaded", function () {
     .catch((error) => {
       console.error("Error fetching model:", error);
     });
-  
-console.log(quizName);
-  
+
+  console.log(quizName);
+
   const iframe = document.getElementById("api-frame");
 
   const client = new Sketchfab("1.12.1", iframe);
@@ -388,7 +385,7 @@ function showScore() {
 
   const container = document.getElementById("quiz-container");
   const resultBlock = document.createElement("div");
-  const percent = score/totalQuestions*100;
+  const percent = (score / totalQuestions) * 100;
 
   resultBlock.innerHTML = `
     <h2>Quiz Completed!</h2>
@@ -404,9 +401,9 @@ function showScore() {
   container.appendChild(resultBlock);
   // Firestore/form submission
   const urlParams = new URLSearchParams(window.location.search);
-  const quizType = urlParams.get("uid");
+  const quizType = urlParams.get("uid") || "2976f868447f433bbec2a3a53c71ab99";
 
-  finalizeCurrentAttempt(currentUserId, quizType);
+  finalizeCurrentAttempt(currentUserId, quizName);
 
   const form = document.getElementById("form");
   form.innerHTML = `
