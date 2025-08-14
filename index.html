@@ -32,15 +32,34 @@
           />
         </div>
 
-        <div class="input-group">
-          <input type="text" id="education" placeholder="Education" />
+         <div class="input-group">
+          <label for="educationLevel">Level of Education:</label>
+          <select id="educationLevel" required>
+            <option value="">-- Select Option --</option>
+            <option value="highschool">High School</option>
+            <option value="bachelor">Bachelor's Degree</option>
+            <option value="master">Master's Degree</option>
+            <option value="phd">Doctorate / PhD</option>
+          </select>
         </div>
-        <div class="input-group">
-          <input type="text" id="level" placeholder="Level of training" />
-        </div>
+        
         <div class="input-group">
           <input type="email" id="country" placeholder="Country of residence" />
         </div>
+
+         <div class="input-group">
+          <label for="learningType">Learning Type:</label>
+          <select id="learningType">
+            <option value="">-- Select Option --</option>
+            <option value="self">Self-directed</option>
+            <option value="course">Course</option>
+          </select>
+        </div>
+
+        <div class="input-group" id="courseNameGroup" style="display: none">
+          <input type="text" id="courseName" placeholder="Enter Course Name" />
+        </div>
+
         <button class="btn" id="submitSignUp">Sign Up</button>
       </form>
       <p class="or">--------or--------</p>
