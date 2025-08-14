@@ -388,9 +388,11 @@ function showScore() {
 
   const container = document.getElementById("quiz-container");
   const resultBlock = document.createElement("div");
+  const percent = score/totalQuestions*100;
+
   resultBlock.innerHTML = `
     <h2>Quiz Completed!</h2>
-    <p>Your score: ${score}/${totalQuestions}</p>
+    <p>Your score: ${percent}%</p>
     <ul>
       <li>✅ Correct: ${correct}</li>
       <li>❌ Incorrect: ${incorrect}</li>
