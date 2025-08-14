@@ -53,17 +53,29 @@ function showMessage(message, divId) {
   }, 5000);
 }
 
+const learningType = document.getElementById("learningType");
+const courseNameGroup = document.getElementById("courseNameGroup");
+
+learningType.addEventListener("change", function () {
+  if (learningType.value === "course") {
+    courseNameGroup.style.display = "block";
+  } else {
+    courseNameGroup.style.display = "none";
+    courseNameGroup.value = "self-directed";
+  }
+});
+
 // ✅ Wrap in DOMContentLoaded
 const signUp = document.getElementById("submitSignUp");
 
 signUp.addEventListener("click", (event) => {
   event.preventDefault();
 
-  const email = document.getElementById("rEmail").value;
+   const email = document.getElementById("rEmail").value;
   const password = document.getElementById("rPassword").value;
-  const education = document.getElementById("education").value;
-  const level = document.getElementById("level").value;
+  const level = document.getElementById("educationLevel").value;
   const country = document.getElementById("country").value;
+  const type = courseName.value;
 
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
@@ -71,9 +83,9 @@ signUp.addEventListener("click", (event) => {
 
       await setDoc(doc(db, "users", user.uid), {
         email: email,
-        education: education,
-        levelOfTraining: level,
+        levelOfEducation: level,
         country: country,
+        courseType: type,
       });
 
       // ✅ Redirect to homepage after successful signup and login
