@@ -47,6 +47,16 @@ body {
   font-size: 1rem;
 }
 
+.input-group label,
+select {
+  color: #898989;
+}
+
+select {
+  padding:5px;
+  margin-left: 5px;
+}
+
 .btn {
   width: 100%;
   padding: 12px;
