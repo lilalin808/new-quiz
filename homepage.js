@@ -406,7 +406,7 @@ function showScore() {
   const urlParams = new URLSearchParams(window.location.search);
   const quizType = urlParams.get("uid");
 
-  finalizeCurrentAttempt(currentUserId, quizName);
+  finalizeCurrentAttempt(currentUserId, quizType);
 
   const form = document.getElementById("form");
   form.innerHTML = `
